@@ -1,41 +1,79 @@
-# frontend-challenge
+<p align="center">
+  <h3 align="center">Pastel de ideias</h3>
+</p>
+<p align="center">
+  <img src="src/assets/images/preview.png" alt="Logo" />
+  
+</p>
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🗂 Table of Contents
 
-## Recommended IDE Setup
+* [About the Project](#book-about-the-project)
+  * [Technologies](#computer-technologies)
+  * [Layout](#art-layout)
+* [Installation](#bricks-installation)
+  * [Dependencies](#construction-installing-dependencies)
+  * [Web](#file_cabinet-back-end)
+    * [Installing Dependencies](#construction-installing-dependencies)
+    * [Running](#arrow_forward-running)
+* [License](#page_facing_up-license)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## :book: About The Project
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+It was proposed to create a video calling application using react native and WebRTC
 
-## Project Setup
+### :computer: Technologies
+
+* [Javascript](https://www.javascript.com/)
+* [VueJs](https://vuejs.org/)
+
+### :art: Layout
+
+You can access the project's layout in link below:
+
+* [Layout](https://xd.adobe.com/spec/855f4c8d-dd32-45f7-784b-3b38f80782fa-f36e/specs/)
+
+
+## :bricks: Installation
+
+This project use [Node.js](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/), you will need them to build its dependencies.
+
+
+Clone this project repository:
+```sh
+git clone https://github.com/billyfranklim1/frontend-challenge.git
+```
+# Enter in `frontend-challenge` folder:
 
 ```sh
-npm install
+cd frontend-challenge
 ```
 
-### Compile and Hot-Reload for Development
+🚨 If you don't have git in your machine, you can install it [here](https://git-scm.com/downloads).
+
+### :construction: Installing Dependencies
+
+Inside server folder, install dependencies with following comand:
 
 ```sh
-npm run dev
+cd server
+```
+```sh
+yarn install
 ```
 
-### Compile and Minify for Production
+
+### :arrow_forward: Running
+
+Run following command to start:
+
 
 ```sh
-npm run build
+yarn dev
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+The Application will be avaible on [http://localhost:5173/](http://localhost:5173/). 
 
-```sh
-npm run test:unit
-```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+<p align="center">Developed with 💜 by Billyfranklim</p>
