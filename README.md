@@ -53,11 +53,7 @@ cd frontend-challenge
 
 ### :construction: Installing Dependencies
 
-Inside project folder, install dependencies with following comand:
 
-```sh
-cd server
-```
 ```sh
 yarn install
 ```
