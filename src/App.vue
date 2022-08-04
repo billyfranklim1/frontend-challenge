@@ -259,19 +259,19 @@ export default {
         <div class="divider-line"></div>
       </div>
 
-      <div class="list-products">
+      <div v-if="isDrink" class="list-products">
         <product
-          v-if="isDrink"
           :product="product"
-          v-for="product in drinks"
+          v-for="(index, product) in drinks"
           v-bind:key="'drink_' + index"
-        ></product>
+        />
+      </div>
+      <div v-else class="list-products">
         <product
-          v-else
           :product="product"
           v-for="(index, product) in foods"
           v-bind:key="'food_' + index"
-        ></product>
+        />
       </div>
     </div>
   </div>

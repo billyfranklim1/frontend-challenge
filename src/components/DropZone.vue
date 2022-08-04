@@ -59,7 +59,7 @@ export default {
       erroForm.value = "";
     }
 
-    const { getRootProps, getInputProps, noClick, ...rest } = useDropzone({
+    const { getRootProps, getInputProps, ...rest } = useDropzone({
       onDrop,
     });
 

@@ -1,12 +1,18 @@
-<script setup>
-defineProps({
-  product: {
-    type: Object,
-    required: true,
+<script>
+export default {
+  name: "product-card",
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
   },
-});
-
-let imageDefault = "/src/assets/images/default.png";
+  data() {
+    return {
+      imageDefault: "/src/assets/images/default.png",
+    };
+  },
+};
 </script>
 
 <template>
@@ -35,12 +41,8 @@ let imageDefault = "/src/assets/images/default.png";
   </div>
 </template>
 
-<style scoped>
-/* transition down to up */
-
+<style>
 .transition-card {
-  /* transition: all .5s ease-in-out slideUp; */
-  /* transform: translateY(0); */
   animation: 1s ease-out 0s 1 slideUp;
 }
 
@@ -48,7 +50,6 @@ let imageDefault = "/src/assets/images/default.png";
   0% {
     transform: translateY(100%);
   }
-
   100% {
     transform: translateY(0%);
   }
