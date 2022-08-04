@@ -20,8 +20,7 @@
 
 ## :book: About The Project
 
-
-It was proposed to create a video calling application using react native and WebRTC
+It was proposed to create a spa where the user can create a menu for his pastry shop
 
 ### :computer: Technologies
 
