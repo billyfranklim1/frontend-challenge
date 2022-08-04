@@ -20,7 +20,7 @@
 
 ## :book: About The Project
 
-It was proposed to create a spa where the user can create a menu for his pastry shop
+It was proposed to create a single page application (SPA) where the user can create a menu for his pastry shop using VueJs
 
 ### :computer: Technologies
 
@@ -43,7 +43,7 @@ Clone this project repository:
 ```sh
 git clone https://github.com/billyfranklim1/frontend-challenge.git
 ```
-# Enter in `frontend-challenge` folder:
+Enter in `frontend-challenge` folder:
 
 ```sh
 cd frontend-challenge
@@ -53,7 +53,7 @@ cd frontend-challenge
 
 ### :construction: Installing Dependencies
 
-Inside server folder, install dependencies with following comand:
+Inside project folder, install dependencies with following comand:
 
 ```sh
 cd server
