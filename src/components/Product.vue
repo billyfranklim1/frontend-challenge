@@ -6,24 +6,30 @@ defineProps({
   },
 });
 
-
-let imageDefault = '/src/assets/images/default.png';
-
+let imageDefault = "/src/assets/images/default.png";
 </script>
 
 <template>
-  <div class="card transition-card ">
+  <div class="card transition-card">
     <div class="card-header bg-red">
-      <div class="card-title text-yellow title-with-price ">
+      <div class="card-title text-yellow title-with-price">
         <div class="title-product">"{{ product.name }}"</div>
         <div class="price">{{ product.value }}</div>
       </div>
     </div>
     <div class="media">
-      <img :src="product.img || imageDefault" alt="product" :class="!product.img ? 'img-default ' : ''">
+      <img
+        :src="product.img || imageDefault"
+        alt="product"
+        :class="!product.img ? 'img-default ' : ''"
+      />
       <div class="media-body">
-        <div class="text-red"> <span class="product-text">Sabor:</span> {{ product.flavor }}</div>
-        <div class="text-red"> <span class="product-text">Descrição:</span>{{ product.description }}</div>
+        <div class="text-red">
+          <span class="product-text">Sabor:</span> {{ product.flavor }}
+        </div>
+        <div class="text-red">
+          <span class="product-text">Descrição:</span>{{ product.description }}
+        </div>
       </div>
     </div>
   </div>
@@ -32,14 +38,11 @@ let imageDefault = '/src/assets/images/default.png';
 <style scoped>
 /* transition down to up */
 
-
 .transition-card {
   /* transition: all .5s ease-in-out slideUp; */
   /* transform: translateY(0); */
   animation: 1s ease-out 0s 1 slideUp;
-
 }
-
 
 @keyframes slideUp {
   0% {
@@ -51,9 +54,9 @@ let imageDefault = '/src/assets/images/default.png';
   }
 }
 
-.media img{
-    padding: 30px;
-     object-fit: cover
+.media img {
+  padding: 30px;
+  object-fit: cover;
 }
 
 .title-product {
@@ -72,7 +75,6 @@ let imageDefault = '/src/assets/images/default.png';
   width: 180px !important;
   height: 180px !important;
 }
-
 
 .img-default {
   padding: 30px;

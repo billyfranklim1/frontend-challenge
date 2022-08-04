@@ -1,7 +1,7 @@
 <script>
-import Toggle from '@vueform/toggle'
+import Toggle from "@vueform/toggle";
 import product from "./components/Product.vue";
-import { VMoney } from 'v-money';
+import { VMoney } from "v-money";
 import DropZone from "./components/DropZone.vue";
 
 export default {
@@ -9,138 +9,128 @@ export default {
   components: {
     Toggle,
     product,
-    DropZone
+    DropZone,
   },
   data() {
     return {
-      dropzoneOptions: {
-        url: 'https://httpbin.org/post',
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        headers: { "My-Awesome-Header": "header value" }
-      },
-      value: true,
+      isDrink: true,
       drinks: [
         {
-          "name": "Suco de goiaba",
-          "flavor": "Goiaba",
-          "img": "/src/assets/images/suco-img.png",
-          "description": "Um mero suco de goiaba. Tem sachet de açúcar no balcão...",
-          "value": "R$10,00"
+          name: "Suco de goiaba",
+          flavor: "Goiaba",
+          img: "/src/assets/images/suco-img.png",
+          description:
+            "Um mero suco de goiaba. Tem sachet de açúcar no balcão...",
+          value: "R$10,00",
         },
         {
-          "name": "Suco de laranja",
-          "flavor": "Laranja",
-          "img": "/src/assets/images/suco-img.png",
-          "description": "Um mero suco de laranja. Tem sachet de açúcar no balcão...",
-          "value": "R$10,00"
-        }
+          name: "Suco de laranja",
+          flavor: "Laranja",
+          img: "/src/assets/images/suco-img.png",
+          description:
+            "Um mero suco de laranja. Tem sachet de açúcar no balcão...",
+          value: "R$10,00",
+        },
       ],
       foods: [
         {
-          "name": "Pizza",
-          "flavor": "Calabresa",
-          "img": "/src/assets/images/pasteis-img.png",
-          "description": "Uma pizza de calabresa. Tem sachet de açúcar no balcão...",
-          "value": "R$10,00"
+          name: "Pizza",
+          flavor: "Calabresa",
+          img: "/src/assets/images/pasteis-img.png",
+          description:
+            "Uma pizza de calabresa. Tem sachet de açúcar no balcão...",
+          value: "R$10,00",
         },
         {
-          "name": "Pizza",
-          "flavor": "Calabresa",
-          "img": "/src/assets/images/pasteis-img.png",
-          "description": "Uma pizza de calabresa. Tem sachet de açúcar no balcão...",
-          "value": "R$10,00"
-        }
+          name: "Pizza",
+          flavor: "Calabresa",
+          img: "/src/assets/images/pasteis-img.png",
+          description:
+            "Uma pizza de calabresa. Tem sachet de açúcar no balcão...",
+          value: "R$10,00",
+        },
       ],
       form: {
-        name: '',
-        flavor: '',
-        img: '',
-        description: '',
-        value: ''
+        name: "",
+        flavor: "",
+        img: "",
+        description: "",
+        value: "",
       },
       erroForm: {
-        name: '',
-        flavor: '',
-        img: '',
-        description: '',
-        value: ''
+        name: "",
+        flavor: "",
+        img: "",
+        description: "",
+        value: "",
       },
       money: {
-        decimal: ',',
-        thousands: '.',
-        prefix: 'R$ ',
+        decimal: ",",
+        thousands: ".",
+        prefix: "R$ ",
         precision: 2,
-        masked: false
-      }
-    }
+        masked: false,
+      },
+    };
   },
   methods: {
     handleImages(image) {
       this.form.img = image.value;
     },
     validate() {
-
       let erro = false;
       this.erroForm = {
-        name: '',
-        flavor: '',
-        img: '',
-        description: '',
-        value: ''
+        name: "",
+        flavor: "",
+        img: "",
+        description: "",
+        value: "",
       };
       // name | required | min:3 | max:60 | string
 
       if (this.form.name.length < 3 || this.form.name.length > 60) {
-        this.erroForm.name = 'O nome deve ter entre 3 e 60 caracteres';
+        this.erroForm.name = "O nome deve ter entre 3 e 60 caracteres";
         erro = true;
       }
-      if (typeof this.form.name !== 'string') {
-        this.erroForm.name = 'O nome deve ser uma texto';
+      if (typeof this.form.name !== "string") {
+        this.erroForm.name = "O nome deve ser uma texto";
         erro = true;
       }
-      if (this.form.name == '') {
-        this.erroForm.name = 'O nome é obrigatório';
+      if (this.form.name == "") {
+        this.erroForm.name = "O nome é obrigatório";
         erro = true;
       }
-      // flavor | required | min:3 | max:60 | string  
+      // flavor | required | min:3 | max:60 | string
 
       if (this.form.flavor.length < 3 || this.form.flavor.length > 60) {
-        this.erroForm.flavor = 'O sabor deve ter entre 3 e 60 caracteres';
+        this.erroForm.flavor = "O sabor deve ter entre 3 e 60 caracteres";
         erro = true;
       }
-      if (typeof this.form.flavor !== 'string') {
-        this.erroForm.flavor = 'O sabor deve ser uma texto';
+      if (typeof this.form.flavor !== "string") {
+        this.erroForm.flavor = "O sabor deve ser uma texto";
         erro = true;
       }
-      if (this.form.flavor == '') {
-        this.erroForm.flavor = 'O sabor é obrigatório';
-        erro = true;
-      }
-
-      if (this.form.value == '') {
-        this.erroForm.value = 'O valor é obrigatório';
+      if (this.form.flavor == "") {
+        this.erroForm.flavor = "O sabor é obrigatório";
         erro = true;
       }
 
-      if (typeof this.form.description !== 'string') {
-        this.erroForm.description = 'A descrição deve ser uma texto';
+      if (this.form.value == "") {
+        this.erroForm.value = "O valor é obrigatório";
         erro = true;
       }
 
+      if (typeof this.form.description !== "string") {
+        this.erroForm.description = "A descrição deve ser uma texto";
+        erro = true;
+      }
 
       return erro;
-
-
-
     },
     save() {
-
-
       if (this.validate()) {
         return;
       }
-
 
       if (this.value) {
         this.drinks.unshift(this.form);
@@ -148,104 +138,110 @@ export default {
         this.foods.unshift(this.form);
       }
       this.form = {
-        name: '',
-        flavor: '',
-        img: '',
-        description: '',
-        value: ''
+        name: "",
+        flavor: "",
+        img: "",
+        description: "",
+        value: "",
       };
 
       this.$refs.uploadImages.removeImage();
-
     },
     clearForm() {
       this.form = {
-        name: '',
-        flavor: '',
-        img: '',
-        description: '',
-        value: ''
+        name: "",
+        flavor: "",
+        img: "",
+        description: "",
+        value: "",
       };
 
       this.erroForm = {
-        name: '',
-        flavor: '',
-        img: '',
-        description: '',
-        value: ''
+        name: "",
+        flavor: "",
+        img: "",
+        description: "",
+        value: "",
       };
 
-
-
       this.$refs.uploadImages.removeImage();
-
-
-
-    }
-
-  }
-}
+    },
+  },
+};
 </script>
 
-<style src="@vueform/toggle/themes/default.css">
-</style>
-
-
+<style src="@vueform/toggle/themes/default.css"></style>
 
 <template>
-
   <div class="background">
-    <div class="wave">
-    </div>
+    <div class="wave"></div>
     <div class="logo">
-      <img src="/src/assets/images/Logo.svg" alt="name">
+      <img src="/src/assets/images/Logo.svg" alt="name" />
     </div>
 
     <div class="container-food">
-      <div class="fried-pastry ">
-      </div>
-      <div class="unfocused-fried-pastry ">
-      </div>
+      <div class="fried-pastry"></div>
+      <div class="unfocused-fried-pastry"></div>
       <div class="card">
         <div class="card-header bg-yellow">
           <div class="card-title text-red title-form-flag">
-            <div class="title-form"> Monte aqui seu cardápio. O que está esperando ?</div>
+            <div class="title-form">
+              Monte aqui seu cardápio. O que está esperando ?
+            </div>
             <div class="title-flag">
               <div>Comida</div>
-              <toggle v-model="value"></toggle>
+              <toggle v-model="isDrink"></toggle>
               <div>Bebida</div>
             </div>
-
           </div>
         </div>
         <div class="card-body">
           <div class="grid-container">
             <div class="grid-item">
-              <input class="input-field" type="text" placeholder="Titulo" v-model="form.name">
-              <div class="error-field" v-if="erroForm.name">{{ erroForm.name }}</div>
+              <input
+                class="input-field"
+                type="text"
+                placeholder="Titulo"
+                v-model="form.name"
+              />
+              <div class="error-field" v-if="erroForm.name">
+                {{ erroForm.name }}
+              </div>
             </div>
             <div class="grid-item">
-              <input class="input-field" type="text" placeholder="Sabor" v-model="form.flavor">
-              <div class="error-field" v-if="erroForm.flavor">{{ erroForm.flavor }}</div>
+              <input
+                class="input-field"
+                type="text"
+                placeholder="Sabor"
+                v-model="form.flavor"
+              />
+              <div class="error-field" v-if="erroForm.flavor">
+                {{ erroForm.flavor }}
+              </div>
             </div>
             <div class="grid-item">
-              <input class="input-field" v-model="form.value" v-money="money">
-              <div class="error-field" v-if="erroForm.value">{{ erroForm.value }}</div>
+              <input class="input-field" v-model="form.value" v-money="money" />
+              <div class="error-field" v-if="erroForm.value">
+                {{ erroForm.value }}
+              </div>
             </div>
           </div>
           <div class="grid-container">
             <div class="grid-item">
-              <textarea class="input-field" placeholder="Descrição" rows="4" v-model="form.description"></textarea>
-              <div class="error-field" v-if="erroForm.description">{{ erroForm.description }}</div>
+              <textarea
+                class="input-field"
+                placeholder="Descrição"
+                rows="4"
+                v-model="form.description"
+              ></textarea>
+              <div class="error-field" v-if="erroForm.description">
+                {{ erroForm.description }}
+              </div>
             </div>
           </div>
           <div class="grid-container">
-            <div class="grid-item ">
+            <div class="grid-item">
               <drop-zone ref="uploadImages" @drop="handleImages"></drop-zone>
-              <!-- <vue2-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue2-dropzone> -->
-
-              <!-- <UploadImages style="border: none; background: none; outline: none; cursor: pointer; text-align: center; width: 100%; height: 100%;" :max="1" uploadMsg="Arraste e solte aqui o seu arquivo" fileErrorMsg="Arquivo inválido" @changed="handleImages" clearAll="Remove todos os arquivos">
-              </UploadImages> -->
             </div>
           </div>
           <div class="grid-container">
@@ -254,23 +250,29 @@ export default {
               <button class="button-save" @click="save">Salvar</button>
             </div>
           </div>
-
         </div>
       </div>
 
       <div class="divider">
         <div class="divider-line"></div>
-        <div class="divider-text">
-          Veja como será apresentado ao cliente
-        </div>
+        <div class="divider-text">Veja como será apresentado ao cliente</div>
         <div class="divider-line"></div>
       </div>
 
       <div class="list-products">
-        <product v-if="value" :product="product" v-for="product in drinks"></product>
-        <product v-else :product="product" v-for="product in foods"></product>
+        <product
+          v-if="isDrink"
+          :product="product"
+          v-for="product in drinks"
+          v-bind:key="'drink_' + index"
+        ></product>
+        <product
+          v-else
+          :product="product"
+          v-for="(index, product) in foods"
+          v-bind:key="'food_' + index"
+        ></product>
       </div>
-
     </div>
   </div>
 </template>
@@ -278,7 +280,8 @@ export default {
 <style scoped>
 .fried-pastry {
   position: absolute;
-  background: url('/src/assets/images/pasteis-img@2x.png') no-repeat center center;
+  background: url("/src/assets/images/pasteis-img@2x.png") no-repeat center
+    center;
   background-size: cover;
   width: 250px;
   height: 250px;
@@ -286,18 +289,17 @@ export default {
   right: 50px;
 }
 
-
 .unfocused-fried-pastry {
   position: absolute;
-  background: url('/src/assets/images/pastel-paralax@2x.png') no-repeat center center;
+  background: url("/src/assets/images/pastel-paralax@2x.png") no-repeat center
+    center;
   background-size: cover;
   width: 450px;
   height: 450px;
   top: -250px;
   left: -240px;
-  z-index: 1
+  z-index: 1;
 }
-
 
 .wave {
   position: absolute;
@@ -312,7 +314,7 @@ export default {
 }
 
 .error-field {
-  color: #A03400;
+  color: #a03400;
   font-size: 12px;
   margin-top: -10px;
 }
@@ -326,7 +328,6 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
 
 .title-flag div {
@@ -351,7 +352,7 @@ export default {
 .divider-text {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #A03400;
+  color: #a03400;
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -363,7 +364,7 @@ export default {
 .divider-line {
   width: 100%;
   height: 1px;
-  background-color: #A03400;
+  background-color: #a03400;
 }
 
 .divider {
@@ -373,11 +374,7 @@ export default {
   margin-top: 20px;
   margin-bottom: 20px;
   overflow: visible !important;
-
-
 }
-
-
 
 /*  */
 /* .container{

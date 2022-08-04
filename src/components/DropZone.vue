@@ -2,46 +2,46 @@
   <div>
     <div v-bind="getRootProps()" class="drag-drop drop-zone">
       <div v-if="imgPreview">
-        <img :src="imgPreview" class="img-preview" alt="preview">
+        <img :src="imgPreview" class="img-preview" alt="preview" />
       </div>
       <div v-else>
         <input v-bind="getInputProps()" />
-        <img src="/src/assets/images/upload-file.svg" class="img-upload" alt="upload">
-        <p v-if="isDragActive">
-          Solte os arquivos aqui ...
-        </p>
+        <img
+          src="/src/assets/images/upload-file.svg"
+          class="img-upload"
+          alt="upload"
+        />
+        <p v-if="isDragActive">Solte os arquivos aqui ...</p>
         <p v-else>
-          Jogue aqui o arquivo de imagem do seu pastel ou clique para localizar a pasta.
+          Jogue aqui o arquivo de imagem do seu pastel ou clique para localizar
+          a pasta.
         </p>
       </div>
       <!-- error -->
       <div v-if="erroForm" class="error-field">{{ erroForm }}</div>
     </div>
-
   </div>
 </template>
 
 <script>
 import { useDropzone } from "vue3-dropzone";
-import { ref, watchEffect } from 'vue'
+import { ref } from "vue";
 
 export default {
   name: "UseDropzoneDemo",
-  emits: ['drop'],
+  emits: ["drop"],
   setup(props, { emit }) {
-
     const imgPreview = ref();
     const erroForm = ref();
 
     function drop() {
-      emit('drop', imgPreview)
+      emit("drop", imgPreview);
     }
 
-    function onDrop(acceptFiles, rejectReasons, inputRef) {
+    function onDrop(acceptFiles) {
+      erroForm.value = "";
 
-      erroForm.value = '';
-
-      let typeAccept = ['image/png', 'image/jpg', 'image/jpeg'];
+      let typeAccept = ["image/png", "image/jpg", "image/jpeg"];
 
       console.log(acceptFiles[0].type);
 
@@ -49,21 +49,19 @@ export default {
         imgPreview.value = URL.createObjectURL(acceptFiles[0]);
         drop();
       } else {
-        erroForm.value = 'Somente arquivos de imagem png e jpg';
+        erroForm.value = "Somente arquivos de imagem png e jpg";
       }
-
     }
-
 
     function removeImage() {
       imgPreview.value = null;
       drop();
-      erroForm.value = '';
-
+      erroForm.value = "";
     }
 
-    const { getRootProps, getInputProps, noClick, ...rest } = useDropzone({ onDrop });
-
+    const { getRootProps, getInputProps, noClick, ...rest } = useDropzone({
+      onDrop,
+    });
 
     return {
       getRootProps,
@@ -72,7 +70,7 @@ export default {
       imgPreview,
       removeImage,
       drop,
-      erroForm
+      erroForm,
     };
   },
 };
@@ -80,7 +78,7 @@ export default {
 
 <style>
 .error-field {
-  color: #A03400;
+  color: #a03400;
   font-size: 12px;
   margin-top: 5px;
 }
@@ -98,7 +96,7 @@ export default {
   background: red;
   border-radius: 50%;
   border: 1px solid red;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
   color: #fff;
 }
 
@@ -107,7 +105,7 @@ export default {
   height: auto;
   align-items: center !important;
   padding: 10px;
-  color: #A03400;
+  color: #a03400;
 }
 
 .img-upload {
