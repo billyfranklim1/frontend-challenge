@@ -1,3 +1,111 @@
+<template>
+  <div class="background">
+    <div class="wave"></div>
+    <div class="logo">
+      <img src="/src/assets/images/Logo.svg" alt="name" />
+    </div>
+
+    <div class="container-food">
+      <div class="fried-pastry"></div>
+      <div class="unfocused-fried-pastry"></div>
+
+      <div class="form-food">
+        <div class="card">
+          <div class="card-header bg-yellow">
+            <div class="card-title text-red title-form-flag">
+              <div class="title-form">
+                Monte aqui seu cardápio. O que está esperando ?
+              </div>
+              <div class="title-flag">
+                <div>Comida</div>
+                <toggle v-model="isDrink"></toggle>
+                <div>Bebida</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="grid-container">
+              <div class="grid-item">
+                <input
+                  class="input-field"
+                  type="text"
+                  placeholder="Titulo do pedido"
+                  v-model="form.name"
+                />
+                <div class="error-field" v-if="erroForm.name">
+                  {{ erroForm.name }}
+                </div>
+              </div>
+              <div class="grid-item">
+                <input
+                  class="input-field"
+                  type="text"
+                  placeholder="Sabor"
+                  v-model="form.flavor"
+                />
+                <div class="error-field" v-if="erroForm.flavor">
+                  {{ erroForm.flavor }}
+                </div>
+              </div>
+              <div class="grid-item">
+                <input class="input-field" v-model="form.value" v-money="money" />
+                <div class="error-field" v-if="erroForm.value">
+                  {{ erroForm.value }}
+                </div>
+              </div>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item">
+                <textarea
+                  class="input-field"
+                  placeholder="Descrição"
+                  rows="4"
+                  v-model="form.description"
+                ></textarea>
+                <div class="error-field" v-if="erroForm.description">
+                  {{ erroForm.description }}
+                </div>
+              </div>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item">
+                <drop-zone ref="uploadImages" @drop="handleImages"></drop-zone>
+              </div>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item button-group">
+                <button class="button-clear" @click="clearForm">Limpar</button>
+                <button class="button-save" @click="save">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-text">Veja como será apresentado ao cliente</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <div v-if="isDrink" class="list-products">
+        <product
+          :product="product"
+          v-for="(product, index) in drinks"
+          v-bind:key="'drink_' + index"
+        />
+      </div>
+      <div v-else class="list-products">
+        <product
+          :product="product"
+          v-for="(product, index) in foods"
+          v-bind:key="'food_' + index"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
 import Toggle from "@vueform/toggle";
 import product from "./components/Product.vue";
@@ -165,114 +273,6 @@ export default {
 
 <style src="@vueform/toggle/themes/default.css"></style>
 
-<template>
-  <div class="background">
-    <div class="wave"></div>
-    <div class="logo">
-      <img src="/src/assets/images/Logo.svg" alt="name" />
-    </div>
-
-    <div class="container-food">
-      <div class="fried-pastry"></div>
-      <div class="unfocused-fried-pastry"></div>
-
-      <div class="form-food">
-        <div class="card">
-          <div class="card-header bg-yellow">
-            <div class="card-title text-red title-form-flag">
-              <div class="title-form">
-                Monte aqui seu cardápio. O que está esperando ?
-              </div>
-              <div class="title-flag">
-                <div>Comida</div>
-                <toggle v-model="isDrink"></toggle>
-                <div>Bebida</div>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="grid-container">
-              <div class="grid-item">
-                <input
-                  class="input-field"
-                  type="text"
-                  placeholder="Titulo"
-                  v-model="form.name"
-                />
-                <div class="error-field" v-if="erroForm.name">
-                  {{ erroForm.name }}
-                </div>
-              </div>
-              <div class="grid-item">
-                <input
-                  class="input-field"
-                  type="text"
-                  placeholder="Sabor"
-                  v-model="form.flavor"
-                />
-                <div class="error-field" v-if="erroForm.flavor">
-                  {{ erroForm.flavor }}
-                </div>
-              </div>
-              <div class="grid-item">
-                <input class="input-field" v-model="form.value" v-money="money" />
-                <div class="error-field" v-if="erroForm.value">
-                  {{ erroForm.value }}
-                </div>
-              </div>
-            </div>
-            <div class="grid-container">
-              <div class="grid-item">
-                <textarea
-                  class="input-field"
-                  placeholder="Descrição"
-                  rows="4"
-                  v-model="form.description"
-                ></textarea>
-                <div class="error-field" v-if="erroForm.description">
-                  {{ erroForm.description }}
-                </div>
-              </div>
-            </div>
-            <div class="grid-container">
-              <div class="grid-item">
-                <drop-zone ref="uploadImages" @drop="handleImages"></drop-zone>
-              </div>
-            </div>
-            <div class="grid-container">
-              <div class="grid-item button-group">
-                <button class="button-clear" @click="clearForm">Limpar</button>
-                <button class="button-save" @click="save">Salvar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="divider">
-        <div class="divider-line"></div>
-        <div class="divider-text">Veja como será apresentado ao cliente</div>
-        <div class="divider-line"></div>
-      </div>
-
-      <div v-if="isDrink" class="list-products">
-        <product
-          :product="product"
-          v-for="(product, index) in drinks"
-          v-bind:key="'drink_' + index"
-        />
-      </div>
-      <div v-else class="list-products">
-        <product
-          :product="product"
-          v-for="(product, index) in foods"
-          v-bind:key="'food_' + index"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
 <style scoped>
 .fried-pastry {
   position: absolute;
@@ -287,8 +287,7 @@ export default {
 
 .unfocused-fried-pastry {
   position: absolute;
-  background: url("/src/assets/images/pastel-paralax@2x.png") no-repeat center
-    center;
+  background: url("/src/assets/images/pastel-paralax@2x.png") no-repeat center center;
   background-size: cover;
   width: 450px;
   height: 450px;
@@ -299,10 +298,9 @@ export default {
 
 .wave {
   position: absolute;
-  top: -150px;
-  left: 0;
+  top: -220px;
   width: 100%;
-  height: 50%;
+  height: 600px;
   background-image: url(/src/assets/images/wave.svg);
   background-repeat: no-repeat;
   background-size: cover;

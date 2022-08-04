@@ -6,11 +6,7 @@
       </div>
       <div v-else>
         <input v-bind="getInputProps()" />
-        <img
-          src="/src/assets/images/upload-file.svg"
-          class="img-upload"
-          alt="upload"
-        />
+        <img src="/src/assets/images/upload-file.svg" class="img-upload" alt="upload" />
         <p v-if="isDragActive">Solte os arquivos aqui ...</p>
         <p v-else>
           Jogue aqui o arquivo de imagem do seu pastel ou clique para localizar

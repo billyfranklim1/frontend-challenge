@@ -37,25 +37,11 @@
   height: 100%;
 }
 
-
-
-
-
 .svg {
   top: -130px;
   width: 100%;
   z-index: -1;
 }
-
-/* .container {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  vertical-align: middle;
-  overflow: hidden;
-} */
-
 
 .logo {
   display: flex;
@@ -63,24 +49,8 @@
   justify-content: center;
 }
 
-
-
 .logo img{
   width: 30%;
-}
-
-.logo-name {}
-
-.logo-name img {
-  width: 80%;
-}
-
-.logo-mascot {
-  left: 3%;
-}
-
-.logo-mascot img {
-  width: 90%;
 }
 
 .icon-upload {
@@ -136,8 +106,6 @@
   z-index: 1;
 }
 
-/* placeholder-color: #E43636; */
-
 .input-field::placeholder {
   color: #E43636;
 }
@@ -147,19 +115,9 @@
   border: 1px solid #E43636;
 }
 
-
 .drag-drop {
   border: 1px solid #E43636;
   border-radius: 10px;
-  /* padding: 10px; */
-  /* cursor: pointer; */
-  /* height: 150px; */
-  /* align-items: center; */
-  /* text-align: center; */
-  /* padding-top: 30px; */
-  /* padding-bottom: 30px; */
-  
-
 }
 
 .drag-drop-text {
@@ -167,8 +125,6 @@
   font-size: 16px;
   color: #A03400;
 }
-
-
 
 .button-group {
   position: relative;
@@ -196,13 +152,17 @@
 }
 
 .button-clear {
+  width: 200px;
   background-color: #E43636;
   color: #fff;
+  text-transform: uppercase;
 }
 
 .button-save {
+  width: 200px;
   background-color: #FFCA00;
   color: #A03400;
+  text-transform: uppercase;
 }
 
 .grid-container {
@@ -235,14 +195,4 @@
 
 .grid-item:nth-child(5) {
   grid-column: 9 / span 2;
-}
-
-
-
-.beforeUpload svg{
-  /* color: #A03400 !important; */
-  /* filter: hue-rotate(0deg) !important */
-
-  -webkit-filter: hue-rotate(160deg);
-  filter: hue-rotate(160deg);
 }
