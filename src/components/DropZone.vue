@@ -78,7 +78,7 @@ export default {
 
 <style>
 .error-field {
-  color: #a03400;
+  color: #E43636;
   font-size: 12px;
   margin-top: 5px;
 }
@@ -105,7 +105,7 @@ export default {
   height: auto;
   align-items: center !important;
   padding: 10px;
-  color: #a03400;
+  color: #E43636;
 }
 
 .img-upload {

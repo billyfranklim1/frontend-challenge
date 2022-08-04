@@ -86,8 +86,6 @@ export default {
         description: "",
         value: "",
       };
-      // name | required | min:3 | max:60 | string
-
       if (this.form.name.length < 3 || this.form.name.length > 60) {
         this.erroForm.name = "O nome deve ter entre 3 e 60 caracteres";
         erro = true;
@@ -100,8 +98,6 @@ export default {
         this.erroForm.name = "O nome é obrigatório";
         erro = true;
       }
-      // flavor | required | min:3 | max:60 | string
-
       if (this.form.flavor.length < 3 || this.form.flavor.length > 60) {
         this.erroForm.flavor = "O sabor deve ter entre 3 e 60 caracteres";
         erro = true;
@@ -114,17 +110,14 @@ export default {
         this.erroForm.flavor = "O sabor é obrigatório";
         erro = true;
       }
-
       if (this.form.value == "") {
         this.erroForm.value = "O valor é obrigatório";
         erro = true;
       }
-
       if (typeof this.form.description !== "string") {
         this.erroForm.description = "A descrição deve ser uma texto";
         erro = true;
       }
-
       return erro;
     },
     save() {
@@ -132,7 +125,7 @@ export default {
         return;
       }
 
-      if (this.value) {
+      if (this.isDrink) {
         this.drinks.unshift(this.form);
       } else {
         this.foods.unshift(this.form);
@@ -182,72 +175,75 @@ export default {
     <div class="container-food">
       <div class="fried-pastry"></div>
       <div class="unfocused-fried-pastry"></div>
-      <div class="card">
-        <div class="card-header bg-yellow">
-          <div class="card-title text-red title-form-flag">
-            <div class="title-form">
-              Monte aqui seu cardápio. O que está esperando ?
-            </div>
-            <div class="title-flag">
-              <div>Comida</div>
-              <toggle v-model="isDrink"></toggle>
-              <div>Bebida</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="grid-container">
-            <div class="grid-item">
-              <input
-                class="input-field"
-                type="text"
-                placeholder="Titulo"
-                v-model="form.name"
-              />
-              <div class="error-field" v-if="erroForm.name">
-                {{ erroForm.name }}
+
+      <div class="form-food">
+        <div class="card">
+          <div class="card-header bg-yellow">
+            <div class="card-title text-red title-form-flag">
+              <div class="title-form">
+                Monte aqui seu cardápio. O que está esperando ?
               </div>
-            </div>
-            <div class="grid-item">
-              <input
-                class="input-field"
-                type="text"
-                placeholder="Sabor"
-                v-model="form.flavor"
-              />
-              <div class="error-field" v-if="erroForm.flavor">
-                {{ erroForm.flavor }}
-              </div>
-            </div>
-            <div class="grid-item">
-              <input class="input-field" v-model="form.value" v-money="money" />
-              <div class="error-field" v-if="erroForm.value">
-                {{ erroForm.value }}
+              <div class="title-flag">
+                <div>Comida</div>
+                <toggle v-model="isDrink"></toggle>
+                <div>Bebida</div>
               </div>
             </div>
           </div>
-          <div class="grid-container">
-            <div class="grid-item">
-              <textarea
-                class="input-field"
-                placeholder="Descrição"
-                rows="4"
-                v-model="form.description"
-              ></textarea>
-              <div class="error-field" v-if="erroForm.description">
-                {{ erroForm.description }}
+          <div class="card-body">
+            <div class="grid-container">
+              <div class="grid-item">
+                <input
+                  class="input-field"
+                  type="text"
+                  placeholder="Titulo"
+                  v-model="form.name"
+                />
+                <div class="error-field" v-if="erroForm.name">
+                  {{ erroForm.name }}
+                </div>
+              </div>
+              <div class="grid-item">
+                <input
+                  class="input-field"
+                  type="text"
+                  placeholder="Sabor"
+                  v-model="form.flavor"
+                />
+                <div class="error-field" v-if="erroForm.flavor">
+                  {{ erroForm.flavor }}
+                </div>
+              </div>
+              <div class="grid-item">
+                <input class="input-field" v-model="form.value" v-money="money" />
+                <div class="error-field" v-if="erroForm.value">
+                  {{ erroForm.value }}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="grid-container">
-            <div class="grid-item">
-              <drop-zone ref="uploadImages" @drop="handleImages"></drop-zone>
+            <div class="grid-container">
+              <div class="grid-item">
+                <textarea
+                  class="input-field"
+                  placeholder="Descrição"
+                  rows="4"
+                  v-model="form.description"
+                ></textarea>
+                <div class="error-field" v-if="erroForm.description">
+                  {{ erroForm.description }}
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="grid-container">
-            <div class="grid-item button-group">
-              <button class="button-clear" @click="clearForm">Limpar</button>
-              <button class="button-save" @click="save">Salvar</button>
+            <div class="grid-container">
+              <div class="grid-item">
+                <drop-zone ref="uploadImages" @drop="handleImages"></drop-zone>
+              </div>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item button-group">
+                <button class="button-clear" @click="clearForm">Limpar</button>
+                <button class="button-save" @click="save">Salvar</button>
+              </div>
             </div>
           </div>
         </div>
@@ -262,14 +258,14 @@ export default {
       <div v-if="isDrink" class="list-products">
         <product
           :product="product"
-          v-for="(index, product) in drinks"
+          v-for="(product, index) in drinks"
           v-bind:key="'drink_' + index"
         />
       </div>
       <div v-else class="list-products">
         <product
           :product="product"
-          v-for="(index, product) in foods"
+          v-for="(product, index) in foods"
           v-bind:key="'food_' + index"
         />
       </div>
@@ -285,8 +281,8 @@ export default {
   background-size: cover;
   width: 250px;
   height: 250px;
-  top: -130px;
-  right: 50px;
+  top: -13%;
+  right: 20%;
 }
 
 .unfocused-fried-pastry {
@@ -297,7 +293,7 @@ export default {
   width: 450px;
   height: 450px;
   top: -250px;
-  left: -240px;
+  left: 165px;
   z-index: 1;
 }
 
@@ -314,7 +310,7 @@ export default {
 }
 
 .error-field {
-  color: #a03400;
+  color: #E43636;
   font-size: 12px;
   margin-top: -10px;
 }
@@ -345,8 +341,10 @@ export default {
 }
 
 .list-products {
-  width: 80%;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .divider-text {
@@ -376,12 +374,4 @@ export default {
   overflow: visible !important;
 }
 
-/*  */
-/* .container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-} */
 </style>
